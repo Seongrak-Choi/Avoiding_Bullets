@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         bgmPlayer.start()
 
         binding.mainBtnStart.setOnClickListener {
-//            var intent = Intent(this,PlayActivity::class.java)
-//            startActivity(intent)
+            var intent = Intent(this,PlayActivity::class.java)
+            startActivity(intent)
         }
 
         binding.mainBtnSound.setOnClickListener {
