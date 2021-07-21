@@ -43,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/main_tx_title">
 
         <Button
+            android:id="@+id/main_btn_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00ffffff"
@@ -62,7 +63,8 @@
         app:layout_constraintLeft_toLeftOf="parent">
 
         <ImageButton
-            android:layout_width="60dp"
+            android:id="@+id/main_btn_sound"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
