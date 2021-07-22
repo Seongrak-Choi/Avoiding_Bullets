@@ -4,19 +4,20 @@ import android.graphics.Point
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.cookandroid.avoiding_bullets.databinding.ActivityPlayBinding
 
 class PlayActivity : AppCompatActivity() {
-    private lateinit var playView : PlayView
+    private lateinit var binding : ActivityPlayBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityPlayBinding.inflate(layoutInflater)
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        this.window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 
-        var point = Point()
-        windowManager.defaultDisplay.getSize(point)
-        playView = PlayView(this,point.x,point.y)
-
-        setContentView(playView)
+        setContentView(binding.root)
     }
 }

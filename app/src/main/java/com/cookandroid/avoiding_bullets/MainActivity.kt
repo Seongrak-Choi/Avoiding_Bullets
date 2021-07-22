@@ -38,4 +38,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        bgmPlayer.pause()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        bgmPlayer.start()
+    }
 }

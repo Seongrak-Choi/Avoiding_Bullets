@@ -3,24 +3,35 @@ package com.cookandroid.avoiding_bullets
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Rect
 
-class SpaceShip(screenX:Int,screenY:Int,res:Resources) {
-    var width = 0
-    var height = 0
-    var spaceShip : Bitmap = BitmapFactory.decodeResource(res,R.drawable.spaceship)
+class SpaceShip(var image: Bitmap) {
+    private var x: Int = 0
+    private var y: Int = 0
+    private val w: Int
+    private val h: Int
+    private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
+    private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
     init {
-        width = spaceShip.width/2
-        height = spaceShip.height/2
+        w = image.width
+        h = image.height
 
-        spaceShip = Bitmap.createScaledBitmap(spaceShip,width,height,false)
+        x = screenWidth / 2-w
+        y = screenHeight/2-h
     }
 
-    fun getShip() : Bitmap{
-        return spaceShip
+    fun draw(canvas: Canvas) {
+        canvas.drawBitmap(image, x.toFloat(), y.toFloat(), null)
     }
 
-//    fun getCollisionShape() : Rect{
-//        return Rect()
-//    }
+    fun updateTouch(touch_x: Int, touch_y: Int) {
+        x = touch_x - w / 2
+        y = touch_y - h / 2
+    }
+
+    fun getCollisionShape() : Rect {
+        return Rect(x,y,x+w,y+h)
+    }
 }
