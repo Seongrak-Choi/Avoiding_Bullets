@@ -4,6 +4,7 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
+import com.cookandroid.avoiding_bullets.PlayView.Companion.point
 import kotlin.random.Random
 
 class Bullets(private val image: Bitmap,private val num:Int) {
@@ -21,13 +22,13 @@ class Bullets(private val image: Bitmap,private val num:Int) {
     init {
         w = image.width
         h = image.height
-        var randX = (1..5).random()
-        var randY = (1..10).random()
-        var randSpeed = (5..15).random()
+        var randX = (1..10).random()
+        var randY = (1..20).random()
+        var randSpeed = (5..10).random()
 
         when(num%5){
             1-> {
-                startX=screenWidth/5*randX
+                startX=screenWidth/10*randX
                 startY=h
 
                 yVelocity=randSpeed
@@ -39,7 +40,7 @@ class Bullets(private val image: Bitmap,private val num:Int) {
             }
             2-> {
                 startX=screenWidth-w
-                startY=screenHeight/10*randY
+                startY=screenHeight/20*randY
                 xVelocity=-randSpeed
                 if(startY>screenHeight/2){
                     yVelocity=-randSpeed
@@ -48,7 +49,7 @@ class Bullets(private val image: Bitmap,private val num:Int) {
                 }
             }
             3-> {
-                startX=screenWidth/5*randX
+                startX=screenWidth/10*randX
                 startY=screenHeight-(2*h)
                 yVelocity=-randSpeed
                 if(startX>screenWidth/2){
@@ -59,7 +60,7 @@ class Bullets(private val image: Bitmap,private val num:Int) {
             }
             4->{
                 startX=w
-                startY=screenHeight/10*randY
+                startY=screenHeight/20*randY
                 xVelocity=randSpeed
                 if(startY>screenHeight/2){
                     yVelocity=-randSpeed
@@ -76,9 +77,11 @@ class Bullets(private val image: Bitmap,private val num:Int) {
 
     fun update(){
         if (startX > screenWidth - w || startX<0){
+            point++
             finish=true
         }
         if(startY>screenHeight - h || startY<image.height-h){
+            point++
             finish=true
         }
         startX += (xVelocity)
@@ -86,7 +89,7 @@ class Bullets(private val image: Bitmap,private val num:Int) {
     }
 
     fun getCollisionShape() : Rect {
-        return Rect(startX,startY,startX+w,startY+h)
+        return Rect(startX,startY,startX+(w/2),startY+(h/2))
     }
 
     fun getfinish():Boolean{

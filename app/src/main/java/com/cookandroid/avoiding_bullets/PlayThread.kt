@@ -1,9 +1,11 @@
 package com.cookandroid.avoiding_bullets
 
+import android.content.Intent
 import android.graphics.Canvas
+import android.media.MediaPlayer
 import android.view.SurfaceHolder
 
-class PlayThread(private val surfaceHolder: SurfaceHolder, private val playView: PlayView) : Thread() {
+class PlayThread(private val surfaceHolder: SurfaceHolder, private val playView: PlayView, private val activity: PlayActivity,private var bgmPlayer: MediaPlayer) : Thread() {
     private var running: Boolean = false
 
     private val targetFPS = 165
@@ -48,6 +50,15 @@ class PlayThread(private val surfaceHolder: SurfaceHolder, private val playView:
                 e.printStackTrace()
             }
         }
+
+        try {
+            Thread.sleep(2000)
+            activity.startActivity(Intent(activity, MainActivity::class.java))
+            activity.finish()
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+
     }
 
     companion object{

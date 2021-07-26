@@ -3,5 +3,8 @@
     <font
         android:fontStyle="normal"
         android:font="@font/samliphopangche_outline"/>
+    <font
+        android:fontStyle="normal"
+        android:font="@font/nanumgothicbold"/>
 
 </font-family>
